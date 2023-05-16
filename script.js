@@ -20,6 +20,13 @@ function createCard(taskInfo) {
   const span = document.createElement("span");
   const p = document.createElement("p");
 
+  if(taskInfo.tipo === 'Urgente'){
+    span.classList.add('span-urgent');
+  }else if(taskInfo.tipo === 'Prioritário'){
+    span.classList.add('span-priority');
+  }else{
+    span.classList.add('span-normal');
+  }
   // Adicionando o titulo da tarefa como texto do paragrafo
   p.innerText = taskInfo.titulo;
 
@@ -33,6 +40,17 @@ function createCard(taskInfo) {
   // Adicionando icone ao botão
   button.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
 
+  button.addEventListener('click', function(e){
+
+    tasks.splice(tasks.indexOf(taskInfo),1);
+    renderElements(tasks);
+    // for (let i = 0; i < tasks.length; i++) {
+    //   // e.preventDefault();
+    //   tasks.splice(li);
+    //   renderElements(tasks);
+    // }
+  })
+
   /// Adicionando a div e o botão de deletar ao list item
   li.appendChild(div);
   li.appendChild(button);
@@ -40,19 +58,37 @@ function createCard(taskInfo) {
   return li;
 }
 
+
 function renderElements(taskList) {
   const htmlList = document.querySelector(".tasks");
   htmlList.innerHTML = "";
 
   // Ajustar a lógica
-  let card = createCard(taskList[0]);
-  htmlList.appendChild(card);
+  for (let i = 0; i < taskList.length; i++) {  
+    let card = createCard(taskList[i]);
+    htmlList.appendChild(card);
+  }
 
-  card = createCard(taskList[1]);
-  htmlList.appendChild(card);
+  // card = createCard(taskList[1]);
+  // htmlList.appendChild(card);
 
-  card = createCard(taskList[2]);
-  htmlList.appendChild(card);
+  // card = createCard(taskList[2]);
+  // htmlList.appendChild(card);
 }
-
 renderElements(tasks);
+
+
+const addTask = document.querySelector('#btnSubmit');
+
+addTask.addEventListener('click', function(e){
+  let taskTitle = document.querySelector("#input_title").value;
+  let taskPriority = document.querySelector("#input_priority").value;
+  e.preventDefault();
+  let task = {
+    titulo: taskTitle,
+    tipo: taskPriority
+  };
+  tasks.push(task);
+  renderElements(tasks);
+})
+
