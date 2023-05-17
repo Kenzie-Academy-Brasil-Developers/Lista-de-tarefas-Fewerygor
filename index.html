@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Lista de Tarefas</title>
     <link rel="stylesheet" href="./reset.css" />
     <link
       rel="stylesheet"
@@ -14,18 +14,21 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./style.css" />
-
     <script src="./script.js" defer></script>
   </head>
   <body>
+
     <header>
       <h1>My Tasks</h1>
       <input type="search" placeholder="Pesquisar tarefa" />
     </header>
+
     <main>
       <section class="form_section">
         <h2>Inserir tarefa</h2>
+
         <form>
+
           <div>
             <input
               id="input_title"
@@ -38,7 +41,9 @@
               <option value="Normal">Normal</option>
             </select>
           </div>
+
           <button id="btnSubmit">Adicionar Tarefa na Lista</button>
+
         </form>
       </section>
 
@@ -46,6 +51,8 @@
         <h2>Tarefas</h2>
         <ul class="tasks"></ul>
       </section>
+
     </main>
+
   </body>
 </html>
